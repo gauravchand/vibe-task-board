@@ -96,6 +96,15 @@ export default function App() {
           </div>
         </div>
 
+        {/* Celebration Message - Only shows at 100% */}
+        {progress === 100 && (
+          <div className="mb-6 text-center animate-bounce">
+            <h2 className="text-2xl font-bold text-white drop-shadow-md">
+              Yay!! You completed all the tasks! 🎉
+            </h2>
+          </div>
+        )}
+
         <ul className="space-y-3">
           {tasks.map(task => (
             <li key={task.id} className="group flex items-center gap-3 bg-white/10 hover:bg-white/20 p-3 rounded-xl border border-white/5 transition-all">

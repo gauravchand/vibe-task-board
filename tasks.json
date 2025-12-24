@@ -2,21 +2,16 @@
   {
     "id": "1d9be6db-93e4-428f-973e-c2a0594fefdf",
     "title": "g",
-    "completed": false
+    "completed": true
   },
   {
     "id": "8dc4cb40-74fb-4661-a5f2-a15bbd4884b5",
     "title": "r",
-    "completed": false
+    "completed": true
   },
   {
     "id": "fa00ec72-433b-461b-8f0d-4a3ea7fbff47",
     "title": "s",
-    "completed": false
-  },
-  {
-    "id": "ae3e25e0-bd38-4fa2-afcf-b6f39b466b53",
-    "title": "q",
-    "completed": false
+    "completed": true
   }
 ]
