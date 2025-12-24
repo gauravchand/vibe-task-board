@@ -1,37 +1,116 @@
-# Vibe Task Board - Project Changelog
+# 🌊 Vibe Task Board
 
-## 1. Backend Setup (FastAPI)
-- **Created `backend/requirements.txt`**: Added `fastapi`, `uvicorn`, `pydantic`.
-- **Created `backend/main.py`**:
-  - Implemented REST API endpoints (`GET`, `POST`, `PUT`, `DELETE`).
-  - Added JSON persistence (`tasks.json` stored in project root).
-  - Configured static file serving to host the React frontend (`frontend/dist`) on the root URL.
-  - Added CORS middleware for local development flexibility.
+A Full-Stack "Dopamine" Task Manager built with **FastAPI** and **React**.
 
-## 2. Frontend Configuration (Vite + React + Tailwind)
-- **Initialized Vite Project**: Created standard React structure in `frontend/`.
-- **Dependency Management**:
-  - Downgraded `tailwindcss` to v3.4.17 to resolve PostCSS incompatibility with v4.
-  - Installed `axios`, `lucide-react`, `canvas-confetti`, `clsx`, `tailwind-merge`.
-- **Configuration Fixes (Windows Compatibility)**:
-  - **`tailwind.config.cjs`**: Converted to CommonJS (`module.exports`) and updated `content` paths to explicitly include `./src/*.jsx` and `./src/**/*.{js,ts,jsx,tsx}`.
-  - **`postcss.config.cjs`**: Created to explicitly load `tailwindcss` and `autoprefixer` plugins using CommonJS.
-  - **`vite.config.js`**: Default configuration maintained.
+> **Goal:** Create a clean, polished, and interactive task board that visually rewards productivity.
 
-## 3. Code Implementation
-- **Styles (`frontend/src/index.css`)**:
-  - Added `@tailwind` directives.
-  - Added global transition styles to `body` for smooth background gradient shifts.
-- **Application Logic (`frontend/src/App.jsx`)**:
-  - Implemented "Glassmorphism" UI with Tailwind classes.
-  - **"Vibe" Logic**:
-    - Calculated progress percentage.
-    - Added dynamic background gradient changing from Blue (0%) -> Purple (50%) -> Sunset (100%).
-    - Added `canvas-confetti` trigger on task completion.
-  - **API Integration**: Connected Axios calls to Python backend endpoints.
+---
 
-## 4. Build & Run Instructions
-### Frontend Build
-```bash
-cd frontend
+## 🚀 Live Demo
+**https://vibe-task-board.onrender.com/**
+
+---
+
+## ✨ Unique Features (The "Vibe")
+This isn't just a to-do list; it's designed to make completing tasks feel rewarding.
+
+1.  **Dynamic Atmosphere:** The background gradient shifts seamlessly from **Cool Blue (Focus)** to **Warm Sunset (Reward)** as your progress bar fills up.
+2.  **Dopamine Hits:** Checking off a task triggers a **confetti explosion**.
+3.  **100% Celebration:** Reaching 100% completion unlocks a bouncing celebration message.
+4.  **Glassmorphism UI:** A modern, frosted-glass aesthetic using Tailwind CSS backdrops.
+
+---
+
+## 🛠️ Tech Stack
+
+### **Backend**
+* **Python 3.11+**
+* **FastAPI**: For high-performance, easy-to-use APIs.
+* **Uvicorn**: ASGI server.
+* **JSON Persistence**: Simple file-based storage (`tasks.json`) to persist data across server restarts.
+
+### **Frontend**
+* **React (Vite)**: Fast, modern frontend tooling.
+* **Tailwind CSS**: Utility-first styling.
+* **Lucide React**: Clean, lightweight icons.
+* **Canvas Confetti**: Visual effects.
+
+---
+
+## 📂 Project Structure
+
+```text
+vibe-task-board/
+├── backend/
+│   ├── main.py            # FastAPI Application & Static File Serving
+│   └── requirements.txt   # Python Dependencies
+├── frontend/
+│   ├── src/               # React Source Code
+│   ├── dist/              # Production Build (Created after build)
+│   └── tailwind.config.js # Styling Configuration
+└── tasks.json             # Data Storage (Auto-generated)
+```
+## ⚡How to Run Locally
+
+**1. Clone the Repository**
+
+```text
+git clone [https://github.com/your-username/vibe-task-board.git](https://github.com/your-username/vibe-task-board.git)
+```
+```text
+cd vibe-task-board
+```
+**2. Setup Frontend**
+
+Navigate to the frontend folder, install dependencies, and build the static files.
+
+```text 
+cd frontend 
+```
+```text
+npm install
+```
+```text
 npm run build
+```
+This generates the dist folder that the backend serves.
+
+**3. Setup Backend**
+
+Navigate to the backend folder and install Python dependencies.
+
+```text
+cd ../backend
+```
+```text
+pip install -r requirements.txt
+```
+
+**4. Run the AppStart the server (this serves both the API and the React UI).**
+
+```text
+python -m uvicorn main:app --reload
+```
+Open your browser to: http://127.0.0.1:8000
+
+## 🌐 API Endpoints
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/tasks` | Fetch all tasks |
+| `POST` | `/api/tasks` | Create a new task |
+| `PUT` | `/api/tasks/{id}/complete` | Toggle completion status |
+| `DELETE` | `/api/tasks/{id}` | Delete a task |
+
+## ☁️ Deployment
+
+This project is configured for deployment on Render.
+
+Build Command: 
+```text
+pip install -r backend/requirements.txt && cd frontend && npm install && npm run build
+```
+Start Command: 
+```text
+cd backend && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+```
